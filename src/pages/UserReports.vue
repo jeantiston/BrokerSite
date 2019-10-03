@@ -2,15 +2,16 @@
   
   <div class="q-pa-md">
       <h4>User Reports</h4>
+      <q-btn to="/add-user" class="q-ma-sm" color="primary" unelevated label="Add User" />
     <q-markup-table>
       <thead>
         <tr>
-          <th v-for="col_header in col_headers" class="text-center">{{ col_header }}</th>
+          <th v-for="col_header in col_headers" class="text-left">{{ col_header }}</th>
         </tr>
       </thead>
       <tbody>
         <tr @click="goToData(key)" v-for="(user, key) in users">
-          <td v-for="detail in user" class="text-center">{{ detail }}</td>
+          <td v-for="detail in user" class="text-left">{{ detail }}</td>
         </tr>
       </tbody>
     </q-markup-table>
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-    import { mapState, mapActions, mapGetters } from 'vuex'
+    import { mapState } from 'vuex'
 
     export default {
         methods: {

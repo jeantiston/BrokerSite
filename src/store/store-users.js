@@ -1,25 +1,29 @@
+import Vue from 'vue'
+import { uid } from 'quasar'
+
 const state = {
     users: {
         id1: {
-            firstname: 'Jon',
-            lastname: 'Howellski',
-            mobilenumber: '1231234567',
-            email: 'Jon@gmail.com',
-            status: 'Active'
+            'First Name': 'Jon',
+            'Last Name': 'Howellski',
+            'Mobile Number': '123-123-4567',
+            'Email': 'Jon@gmail.com',
+            'Status': 'Active'
+
         },
         id2: {
-            firstname: 'Bill',
-            lastname: 'Allen',
-            mobilenumber: '2231234567',
-            email: 'Bill@gmail.com',
-            status: 'Active'
+            'First Name': 'Bill',
+            'Last Name': 'Allen',
+            'Mobile Number': '223-123-4567',
+            'Email': 'Bill@gmail.com',
+            'Status': 'Active'
         },
         id3: {
-            firstname: 'Harry',
-            lastname: 'Bower',
-            mobilenumber: '3231234567',
-            email: 'Harry@gmail.com',
-            status: 'Inactive'
+            'First Name': 'Harry',
+            'Last Name': 'Bower',
+            'Mobile Number': '323-123-4567',
+            'Email': 'Harry@gmail.com',
+            'Status': 'Inactive'
         }
     },
     col_headers: ['First Name', 'Last Name', 'Mobile Number', 'Email', 'Status']
@@ -27,14 +31,18 @@ const state = {
 }
 
 const mutations = {
-    setSort(state, value) {
-        state.sort = value
+    addNewUser(state, payload) {
+        Vue.set(state.users, payload.id, payload.newUser)
     }
 }
 
 const actions = {
-    updateTask({ dispatch }, payload) {
-        dispatch('fbUpdateTask', payload)
+    addNewUser({ commit }, newUser) {
+        let payload = {
+            id: uid(),
+            newUser: newUser
+        }
+        commit('addNewUser', payload)
     }
 }
 
