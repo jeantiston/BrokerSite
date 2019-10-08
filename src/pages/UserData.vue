@@ -1,15 +1,14 @@
 <template>
 
-    <div class="q-pa-md">
+    <div class="q-pa-md" style="max-width: 400px">
       <h4>User Data</h4>
       <q-btn v-if="!editUserData" @click="editUserData = !editUserData" class="q-ma-sm" color="primary" unelevated label="Edit" />
     
       <show-user-data v-if="!editUserData" :user="user" />
-      <edit-user-data v-else :user="user" />
+      <edit-user-data v-else :user="user" :id="id" @save="editUserData = false" />
         
           <!-- <span v-else > <q-input class="q-mb-sm"  filled v-model="text" :label="key" /></span> -->
     </div>
-  </div>
 </template>
 
 <script>

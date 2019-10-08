@@ -4,39 +4,45 @@ import { uid } from 'quasar'
 const state = {
     users: {
         id1: {
-            'First Name': 'Jon',
-            'Last Name': 'Howellski',
-            'Mobile Number': '123-123-4567',
-            'Email': 'Jon@gmail.com',
-            'Status': 'Active'
+            'firstname': 'Jon',
+            'lastname': 'Howellski',
+            'mobilenumber': '123-123-4567',
+            'email': 'Jon@gmail.com',
+            'status': 'Active'
 
         },
         id2: {
-            'First Name': 'Bill',
-            'Last Name': 'Allen',
-            'Mobile Number': '223-123-4567',
-            'Email': 'Bill@gmail.com',
-            'Status': 'Active'
+            'firstname': 'Bill',
+            'lastname': 'Allen',
+            'mobilenumber': '223-123-4567',
+            'email': 'Bill@gmail.com',
+            'status': 'Active'
         },
         id3: {
-            'First Name': 'Harry',
-            'Last Name': 'Bower',
-            'Mobile Number': '323-123-4567',
-            'Email': 'Harry@gmail.com',
-            'Status': 'Inactive'
+            'firstname': 'Harry',
+            'lastname': 'Bower',
+            'mobilenumber': '323-123-4567',
+            'email': 'Harry@gmail.com',
+            'status': 'Inactive'
         }
     },
-    col_headers: ['First Name', 'Last Name', 'Mobile Number', 'Email', 'Status']
+    col_headers: ['firstname', 'lastname', 'mobilenumber', 'email', 'status']
 
 }
 
 const mutations = {
+    updateUser(state, payload) {
+        Object.assign(state.users[payload.id], payload.updates)
+    },
     addNewUser(state, payload) {
         Vue.set(state.users, payload.id, payload.newUser)
     }
 }
 
 const actions = {
+    updateUser({ commit }, payload) {
+        commit('updateUser', payload)
+    },
     addNewUser({ commit }, newUser) {
         let payload = {
             id: uid(),

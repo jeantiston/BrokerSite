@@ -5,36 +5,15 @@
       @submit="submitForm" 
       class="q-gutter-md"
     >
-      <q-input
-        filled
-        v-model="newUser.firstname"
-        label="First Name"
-      />
-
-      <q-input
-        filled
-        v-model="newUser.lastname"
-        label="Last Name"
-      />
-
-      <q-input
-        filled
-        v-model="newUser.mobilenumber"
-        label="Cell Phone"
-      />
-
-      <q-input
-        filled
-        v-model="newUser.email"
-        label="Email"
-      />
+    <user-data-input-fields 
+      :user.sync="user" />
 
 
 
-      <div>
         <q-btn label="Add User" type="submit" color="primary"/>
-      </div>
+
     </q-form>
+
 
   </div>
 </template>
@@ -43,11 +22,14 @@
 import { mapActions } from 'vuex'
 
 export default {
+  components: {
+			'user-data-input-fields': require('components/Shared/UserDataInputFields.vue').default
+    },
       data () {
     return {
 
       accept: false,
-      newUser: {
+      user: {
             firstname: '',
             lastname: '',
             mobilenumber: '',
@@ -64,11 +46,11 @@ export default {
             this.submitNewUser()
         },
         submitNewUser() {
-            console.log(this.newUser)
-            this.addNewUser(this.newUser)
+            this.addNewUser(this.user)
             this.$router.push('/user-reports')
         }
     }
+    
 
 }
 </script>
